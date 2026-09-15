@@ -1,7 +1,3 @@
-## Issue
-
-Closes yanisderbikov/traffic-markering-back#<ISSUE_NUMBER>
-
 ## What changed
 
 - 
@@ -12,7 +8,7 @@ Closes yanisderbikov/traffic-markering-back#<ISSUE_NUMBER>
 
 ## Checklist
 
-- [ ] Changes are scoped to the linked Issue
+- [ ] Changes are scoped and clear
 - [ ] Tests/checks pass
 - [ ] No unrelated changes
 - [ ] Ready for review
