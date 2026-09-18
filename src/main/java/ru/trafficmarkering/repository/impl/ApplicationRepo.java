@@ -1,6 +1,7 @@
 package ru.trafficmarkering.repository.impl;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -37,4 +38,10 @@ interface ApplicationRepo extends JpaRepository<Application, UUID> {
                                      @Param("excluded") ApplicationStatus excluded);
 
     boolean existsByPublicId(String publicId);
+
+    /** clearAutomatically — после массового UPDATE в обход persistence context не должно остаться отклики со старым regionViews в кэше первого уровня. */
+    @Modifying(clearAutomatically = true)
+    @Query("update Application a set a.regionViews = null "
+            + "where a.campaign.id = :campaignId and a.regionViews is not null")
+    void resetRegionViewsByCampaignId(@Param("campaignId") UUID campaignId);
 }

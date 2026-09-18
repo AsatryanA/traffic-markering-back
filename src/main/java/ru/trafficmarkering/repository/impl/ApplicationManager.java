@@ -107,6 +107,16 @@ class ApplicationManager implements GetterApplication, SaverApplication, Applica
     }
 
     @Override
+    public void resetRegionViewsByCampaignId(UUID campaignId) {
+        try {
+            applicationRepo.resetRegionViewsByCampaignId(campaignId);
+        } catch (Exception e) {
+            log.error(e);
+            throw new RuntimeException("Database exception", e);
+        }
+    }
+
+    @Override
     public void deleteById(UUID id) {
         try {
             applicationRepo.deleteById(id);
